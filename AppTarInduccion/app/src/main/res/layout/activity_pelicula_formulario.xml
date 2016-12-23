@@ -1,0 +1,92 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.store.chante.apptarinduccion.PeliculaFormularioActivity" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+
+
+        <TextView
+            android:id="@+id/lblNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_nombre_pelicula"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/txtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/lblNombre"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/lblGenero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_genero"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_below="@+id/txtNombre"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/txtGenero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/lblGenero"
+            android:ems="10"
+            android:inputType="textMultiLine">
+        </EditText>
+
+        <TextView
+            android:id="@+id/lblDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_descripcion"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_below="@+id/txtGenero"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/txtDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/lblDescripcion"
+            android:ems="10">
+        </EditText>
+
+        <LinearLayout
+            android:id="@+id/botonera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtDescripcion"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/boton_cancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/boton_cancelar" />
+
+            <Button
+                android:id="@+id/boton_guardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/boton_guardar" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</ScrollView>

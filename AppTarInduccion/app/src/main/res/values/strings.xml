@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">App Inducccion</string>
+    /*Token para acceso al API de MAPBOX*/
+    <string name="access_token">pk.eyJ1IjoiamNoYW50ZWoiLCJhIjoiY2l3cGhkdzh1MDA1ZDJ0bXI5dmF3djc1eiJ9.3H4S9VcfxeldKS2Zd-AxYQ</string>
+
+    /*MENSAJE CUANDO LA BASE DE DATOS SQLITE NO ENCUATRA VALORES*/
+    <string name="lista_vacia">No existen Datos</string>
+
+    <string name="label_nombre_pelicula">Nombre:</string>
+    <string name="label_genero">Genero:</string>
+    <string name="label_descripcion">Descripcion:</string>
+    <string name="menu_crear">Nuevo</string>
+    <string name="menu_eliminar">Eliminar</string>
+    <string name="menu_editar">Editar</string>
+    <string name="menu_visualizar">Vizualizar</string>
+    <string name="hipoteca_eliminar_mensaje">Desea Eliminar la Pelicula</string>
+    <string name="hipoteca_eliminar_confirmacion">Desea Eliminar</string>
+    <string name="hipoteca_eliminar_titulo">Eliminar Pelicula</string>
+    <string name="hipoteca_editar_titulo">Editar Pelicula</string>
+    <string name="hipoteca_editar_confirmacion">Editar Pelicula</string>
+
+
+    <string name="hipoteca_crear_pelicula">Nueva Pelicula</string>
+    <string name="hipoteca_crear_confirmacion">Pelicula creada</string>
+    <string name="boton_guardar">Guardar</string>
+    <string name="boton_cancelar">Cancelar</string>
+    <string name="title_activity_google_maps">GoogleMapsActivity</string>
+
+</resources>
