@@ -9,11 +9,14 @@ app.get('/', function (req, res) {
 
 /*Se especifica el socket par el chat*/
 io.on('connection', function (socket) {
-    console.log('Un usuario conectado ID :'+ socket.id);
+    console.log('Un usuario conectado ID :' + socket.id);
     socket.on('enviar mensaje', function (msg) {
         //Captura los memnsajes que llegan al servidor y los muestra en consola
         console.log('message: ' + msg);
-        io.sockets.emit('nuevo mensaje', msg)
+        io.sockets.emit('nuevo mensaje', {
+            id: socket.id,
+            message: msg
+        });
     });
 });
 
