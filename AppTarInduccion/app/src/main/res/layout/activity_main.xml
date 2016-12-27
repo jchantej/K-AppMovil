@@ -1,60 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:gravity="center_horizontal"
-    tools:context="com.store.chante.apptarinduccion.MainActivity">
-    >
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.store.chante.appinduccion.MainActivity">
 
-    <Button
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MAPA-MAPBOX"
-        android:id="@+id/btnMapa"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnMapa"
-        android:text="GOOGLE-MAPS"
-        android:id="@+id/btnGoogleMap"
-        />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnGoogleMap"
-        android:text="OPEN-STREET-MAP"
-            android:id="@+id/btnOpstmap"
-        />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnOpstmap"
-        android:text="WS-REST"
-        android:id="@+id/btnRest"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnRest"
-        android:text="CHAT"
-        android:id="@+id/btnChat"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnChat"
-        android:text="CRUD-SQLite"
-        android:id="@+id/btnSqlite"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnSqlite"
-        android:text="Servicio Andriod"
-        android:id="@+id/btnServicioAndriod"
-        />
-
+        android:text="Hello World!" />
 </RelativeLayout>
