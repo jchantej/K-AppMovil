@@ -1,33 +1,21 @@
 package com.store.chante.apptarinduccion;
 
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Point;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.view.MotionEvent;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.List;
-
-import org.osmdroid.DefaultResourceProxyImpl;
-import org.osmdroid.ResourceProxy;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
-
-import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener;
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.OverlayItem;
@@ -39,10 +27,12 @@ public class OsmActivity extends Activity {
     LocationManager locationManager;
     private MapController mapController;
     private MapView openMapView;
-    double latitudActual = -4.0159712; //Corrdenadas Iniciales
+    private double latitudActual = -4.0159712; //Corrdenadas Iniciales
     double longitudActual = -79.2034732; //Corrdenadas Iniciales
+    private double latitud ;
+    private double longitud ;
 
-    //temppral verificar en toast cuantas veces actualiza
+    //temporal verificar en toast cuantas veces actualiza
     Integer numero = 0;
     ArrayList<OverlayItem> overlayItemArray;
     //sirve para obtener la  posicion actual
@@ -99,7 +89,7 @@ public class OsmActivity extends Activity {
         openMapView.setBuiltInZoomControls(true);
         openMapView.setMultiTouchControls(true);
         openMapView.setUseDataConnection(true);
-       // openMapView.setTileSource(TileSourceFactory.MAPNIK);
+       //openMapView.setTileSource(TileSourceFactory.MAPNIK);
         mapController = (MapController) this.openMapView.getController();
         mapController.setZoom(14);
         overlayItemArray = new ArrayList();
@@ -115,15 +105,18 @@ public class OsmActivity extends Activity {
                 return false;
             }
 
+            /*Escucha el envento del click en el marker*/
             @Override
             public boolean onItemSingleTapUp(int index, OverlayItem item) {
-                Toast.makeText(
-                        OsmActivity.this,
-                        item.getTitle() + "n" + item.getTitle() + "n"
-                                + item.getPoint().getLatitudeE6() + " : "
-                                + item.getPoint().getLongitudeE6(),
-                        Toast.LENGTH_LONG).show();
+                latitud =  item.getPoint().getLatitude();
+                longitud =  item.getPoint().getLongitude();
 
+                //Cadena con la latitud y longitud que seran leidas por la App de Google Maps
+                String uriParse = "google.navigation:q="+latitud +","+longitud;
+                Uri gmmIntentUri = Uri.parse(uriParse);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
                 return true;
             }
 
@@ -152,6 +145,7 @@ public class OsmActivity extends Activity {
 
        ScaleBarOverlay localScaleBarOverlay = new ScaleBarOverlay(openMapView);
         this.openMapView.getOverlays().add(localScaleBarOverlay);
+
     }
 
     protected void onPause() {

@@ -1,8 +1,10 @@
 package com.store.chante.apptarinduccion;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -11,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.mapbox.mapboxsdk.MapboxAccountManager;
 import com.mapbox.mapboxsdk.annotations.Marker;
-import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.annotations.MarkerViewOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -29,6 +30,8 @@ public class MapBoxActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     private LocationServices locationServices;
     private static final int PERMISSIONS_LOCATION = 0;
+    private Double latitud;
+    private Double longitud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,6 @@ public class MapBoxActivity extends AppCompatActivity {
         // This contains the MapView in XML and needs to be called after the account manager
         setContentView(R.layout.activity_map_box);
         locationServices = LocationServices.getLocationServices(this);
-
 
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
@@ -56,28 +58,37 @@ public class MapBoxActivity extends AppCompatActivity {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(MapboxMap mapboxMap) {
+                map = mapboxMap;
                 mapboxMap.addMarker(new MarkerViewOptions()
                         .position(new LatLng(-4.0159712,-79.2034732))
                         .title("Informacion sobre Ubicacion")
                         .snippet("lat:-4.0159712  - Lon:-79.2034732 ")
                 );
 
-            }
-        });
-        mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(MapboxMap mapboxMap) {
-                mapboxMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(-4.0159712,-79.2034732))
+                mapboxMap.addMarker(new MarkerViewOptions()
+                        .position(new LatLng(-4.0106224 ,-79.1983312))
                         .title("Informacion sobre Ubicacion")
-                        .snippet("lat:-4.0106224  - Lon:-79.1983312")
+                        .snippet("lat:-4.0159712  - Lon:-79.2034732 ")
                 );
 
+                //lanza el evento del click sobre el marker
+                map.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(@NonNull Marker marker) {
+                        latitud =  marker.getPosition().getLatitude();
+                        longitud =  marker.getPosition().getLongitude();
+                        //Cadena con la latitud y longitud que seran leidas por la App de Google Maps
+                        String uriParse = "google.navigation:q="+latitud.toString()+","+longitud.toString();
+                        Uri gmmIntentUri = Uri.parse(uriParse);
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(mapIntent);
+                        return true;
+                    }
+                });
+
             }
         });
-
-
-
 
 
         floatingActionButton = (FloatingActionButton) findViewById(R.id.location_toggle_fab);
@@ -89,12 +100,17 @@ public class MapBoxActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mapView.onResume();
+
     }
 
     @Override
